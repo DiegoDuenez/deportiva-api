@@ -6,14 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class Persona extends Model
+class Membresia extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'nombre',
-        'apellidos',
-        'curp',
-        'localidad_id'
+        'tipo',
     ];
 }

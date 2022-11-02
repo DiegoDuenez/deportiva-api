@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\PersonaController;
+use App\Http\Controllers\MembresiaController;
+
 
 
 /*
@@ -46,4 +48,18 @@ Route::controller(PersonaController::class)->group(function () {
     Route::post('personas', 'store');
     Route::put('personas/{id}', 'update');
     Route::delete('personas/{id}', 'destroy');
+});
+
+
+
+/**
+ * Membresia
+ * 
+ */
+Route::controller(MembresiaController::class)->group(function () {
+    Route::get('membresias', 'index');
+    Route::get('membresias/{id}', 'show');
+    Route::post('membresias', 'store');
+    Route::put('membresias/{id}', 'update');
+    Route::delete('membresias/{id}', 'destroy');
 });
