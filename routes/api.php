@@ -6,6 +6,8 @@ use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\MembresiaController;
 use App\Http\Controllers\EstadoController;
+use App\Http\Controllers\MunicipioController;
+
 
 
 
@@ -78,4 +80,18 @@ Route::controller(EstadoController::class)->group(function () {
     Route::post('estados', 'store');
     Route::put('estados/{id}', 'update');
     Route::delete('estados/{id}', 'destroy');
+});
+
+
+
+/**
+ * Municipio
+ * 
+ */
+Route::controller(MunicipioController::class)->group(function () {
+    Route::get('municipios', 'index');
+    Route::get('municipios/{id}', 'show');
+    Route::post('municipios', 'store');
+    Route::put('municipios/{id}', 'update');
+    Route::delete('municipios/{id}', 'destroy');
 });
