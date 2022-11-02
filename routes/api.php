@@ -109,3 +109,17 @@ Route::controller(FamiliaController::class)->group(function () {
     Route::put('familias/{id}', 'update');
     Route::delete('familias/{id}', 'destroy');
 });
+
+
+
+/**
+ * Pago
+ * 
+ */
+Route::controller(PagoController::class)->group(function () {
+    Route::get('pagos', 'index');
+    Route::get('pagos/{id}', 'show');
+    Route::post('pagos', 'store');
+    Route::put('pagos/{id}', 'update');
+    Route::delete('pagos/{id}', 'destroy');
+});
