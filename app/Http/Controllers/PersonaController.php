@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpFoundation\Response;
-use App\Http\Resources\LocalidadResource;
+use App\Http\Resources\PersonaResource;
 use Illuminate\Http\Request;
-use App\Models\Localidad;
+use App\Models\Persona;
 
-class LocalidadController extends Controller
+class PersonaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,27 @@ class LocalidadController extends Controller
      */
     public function index()
     {
-        return LocalidadResource::collection(Localidad::all());
+        return PersonaResource::collection(Persona::all());
+    }
+
+   
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nombre' => 'required|string',
+            'apellidos' => 'required|string',
+            'curp' => 'required|string',
+            'localidad_id' => 'required',
+        ]);
+
+        return new PersonaResource(Persona::create($validated));
     }
 
 
@@ -31,43 +50,29 @@ class LocalidadController extends Controller
      */
     public function show(int $id)
     {
-        return new LocalidadResource(Localidad::find($id));
+        return new PersonaResource(Persona::find($id));
+
     }
 
-
-    
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'tipo' => 'required',
-        ]);
-
-        return new LocalidadResource(Localidad::create($validated));
-    }
-    
-
-
+   
     /**
      * Update the specified resource in storage.
      *
-     * @param  Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $id)
     {
         $validated = $request->validate([
-            'tipo' => 'required',
+            'nombre' => 'required|string',
+            'apellidos' => 'required|string',
+            'curp' => 'required|string',
+            'localidad_id' => 'required',
         ]);
 
         try {
-            $localidad = Localidad::findOrFail($id);
+            $persona = Persona::findOrFail($id);
 
         } catch (ModelNotFoundException $exception) {
 
@@ -78,13 +83,12 @@ class LocalidadController extends Controller
             
         }
 
-        if($localidad->update($validated))
-            return new LocalidadResource($localidad);
-        
+        if($persona->update($validated))
+            return new PersonaResource($persona);
     }
 
 
-
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -93,10 +97,9 @@ class LocalidadController extends Controller
      */
     public function destroy(int $id)
     {
-        
         try {
 
-            $localidad = Localidad::findOrFail($id);
+            $persona = Persona::findOrFail($id);
 
         } catch (ModelNotFoundException $exception) {
 
@@ -107,14 +110,11 @@ class LocalidadController extends Controller
 
         }
 
-        if($localidad->delete())
+        if($persona->delete())
             return response()->json([
                 'status' => true,
                 'message' => 'Resource deleted'
             ], 200);
 
-       
     }
-        
-
 }

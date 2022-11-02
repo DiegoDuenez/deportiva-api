@@ -21,6 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('localidad_id');
             $table->foreign('localidad_id')->references('id')->on('localidades');
             $table->timestamps();
+            $table->softDeletes();
+
         });
         
     }
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('personas');
     }
 };

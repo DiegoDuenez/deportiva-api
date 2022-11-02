@@ -24,6 +24,8 @@ return new class extends Migration
             $table->unsignedBigInteger('pago_id');
             $table->foreign('pago_id')->references('id')->on('pagos');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('personas_actividades');
     }
 };

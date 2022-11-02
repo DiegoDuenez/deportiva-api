@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('descripcion');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('actividades');
     }
 };

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LocalidadResource extends JsonResource
+class PersonaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,7 @@ class LocalidadResource extends JsonResource
     public function toArray($request)
     {
         return parent::toArray($request);
-        
     }
 
-
+   
 }

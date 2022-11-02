@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('tipo');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('localidades');
     }
 };

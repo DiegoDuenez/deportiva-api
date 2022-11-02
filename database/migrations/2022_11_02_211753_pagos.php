@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean('pagado')->default(0);
             $table->string('mensualidad_pagar');
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('pagos');
     }
 };

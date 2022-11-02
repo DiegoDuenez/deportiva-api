@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LocalidadController;
+use App\Http\Controllers\PersonaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +31,19 @@ Route::controller(LocalidadController::class)->group(function () {
     Route::get('localidades/{id}', 'show');
     Route::post('localidades', 'store');
     Route::put('localidades/{id}', 'update');
+    Route::delete('localidades/{id}', 'destroy');
+});
+
+
+
+/**
+ * Persona
+ * 
+ */
+Route::controller(PersonaController::class)->group(function () {
+    Route::get('personas', 'index');
+    Route::get('personas/{id}', 'show');
+    Route::post('personas', 'store');
+    Route::put('personas/{id}', 'update');
+    Route::delete('personas/{id}', 'destroy');
 });
