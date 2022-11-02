@@ -95,3 +95,17 @@ Route::controller(MunicipioController::class)->group(function () {
     Route::put('municipios/{id}', 'update');
     Route::delete('municipios/{id}', 'destroy');
 });
+
+
+
+/**
+ * Familia
+ * 
+ */
+Route::controller(FamiliaController::class)->group(function () {
+    Route::get('familias', 'index');
+    Route::get('familias/{id}', 'show');
+    Route::post('familias', 'store');
+    Route::put('familias/{id}', 'update');
+    Route::delete('familias/{id}', 'destroy');
+});
