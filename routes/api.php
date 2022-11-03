@@ -38,7 +38,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  * 
  */
 Route::controller(UserController::class)->group(function () {
-    Route::middleware('auth:sanctum')->get('usuarios', 'index');
+    Route::get('usuarios', 'index');
     Route::middleware('auth:sanctum')->get('usuarios/{id}', 'show');
     Route::post('usuarios', 'store');
     Route::post('login', 'login');
