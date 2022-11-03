@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('apellidos');
             $table->string('curp');
             $table->unsignedBigInteger('localidad_id');
-            $table->foreign('localidad_id')->references('id')->on('localidades');
+            $table->foreign('localidad_id')->references('id')->on('localidades')->onDelete('cascade');
+            $table->unsignedBigInteger('folio_id');
+            $table->foreign('folio_id')->references('id')->on('familias')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 

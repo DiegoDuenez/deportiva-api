@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('familias', function (Blueprint $table) {
             $table->id();
             $table->string('folio');
+            $table->string('nombre');
             $table->unsignedBigInteger('membresia_id');
-            $table->foreign('membresia_id')->references('id')->on('membresias');
-            $table->unsignedBigInteger('persona_id');
-            $table->foreign('persona_id')->references('id')->on('personas');
+            $table->foreign('membresia_id')->references('id')->on('membresias')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 

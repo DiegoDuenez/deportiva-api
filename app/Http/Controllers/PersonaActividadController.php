@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Resources\FamiliaResource;
+use App\Http\Resources\PersonaActividadResource;
 use Illuminate\Http\Request;
-use App\Models\Familia;
+use App\Models\PersonaActividad;
 
-class FamiliaController extends Controller
+class PersonaActividadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class FamiliaController extends Controller
      */
     public function index()
     {
-        return FamiliaResource::collection(Familia::all());
+        return PersonaActividadResource::collection(PersonaActividad::all());
     }
 
 
@@ -31,7 +31,7 @@ class FamiliaController extends Controller
      */
     public function show(int $id)
     {
-        return new FamiliaResource(Familia::find($id));
+        return new PersonaActividadResource(PersonaActividad::find($id));
     }
 
 
@@ -45,12 +45,12 @@ class FamiliaController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'folio' => 'folio',
-            'nombre' => 'required',
-            'membresia_id' => 'required',
+            'persona_id' => 'required',
+            'actividad_id' => 'required',
+            'pago_id' => 'required',
         ]);
 
-        return new FamiliaResource(Familia::create($validated));
+        return new PersonaActividadResource(PersonaActividad::create($validated));
     }
     
 
@@ -65,13 +65,13 @@ class FamiliaController extends Controller
     public function update(Request $request, int $id)
     {
         $validated = $request->validate([
-            'folio' => 'folio',
-            'nombre' => 'required',
-            'membresia_id' => 'required',
+            'persona_id' => 'required',
+            'actividad_id' => 'required',
+            'pago_id' => 'required',
         ]);
 
         try {
-            $Familia = Familia::findOrFail($id);
+            $PersonaActividad = PersonaActividad::findOrFail($id);
 
         } catch (ModelNotFoundException $exception) {
 
@@ -82,8 +82,8 @@ class FamiliaController extends Controller
             
         }
 
-        if($Familia->update($validated))
-            return new FamiliaResource($Familia);
+        if($PersonaActividad->update($validated))
+            return new PersonaActividadResource($PersonaActividad);
         
     }
 
@@ -100,7 +100,7 @@ class FamiliaController extends Controller
         
         try {
 
-            $Familia = Familia::findOrFail($id);
+            $PersonaActividad = PersonaActividad::findOrFail($id);
 
         } catch (ModelNotFoundException $exception) {
 
@@ -111,7 +111,7 @@ class FamiliaController extends Controller
 
         }
 
-        if($Familia->delete())
+        if($PersonaActividad->delete())
             return response()->json([
                 'status' => true,
                 'message' => 'Resource deleted'

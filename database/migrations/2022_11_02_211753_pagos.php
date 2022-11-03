@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('folio_id');
-            $table->foreign('folio_id')->references('id')->on('familias');
+            $table->foreign('folio_id')->references('id')->on('familias')->onDelete('cascade');
             $table->boolean('pagado')->default(0);
             $table->string('mensualidad_pagar');
             $table->timestamps();

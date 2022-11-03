@@ -14,12 +14,19 @@ class Persona extends Model
         'nombre',
         'apellidos',
         'curp',
-        'localidad_id'
+        'localidad_id',
+        'folio_id'
+
     ];
 
     public function localidad()
     {
         return $this->belongsTo(Localidad::class, 'localidad_id');
+    }
+
+    public function familia()
+    {
+        return $this->belongsTo(Familia::class, 'folio_id');
     }
 
 

@@ -12,7 +12,7 @@ class Familia extends Model
     
     protected $fillable = [
         'folio',
+        'nombre',
         'membresia_id',
-        'persona_id',
     ];
 }
