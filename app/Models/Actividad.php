@@ -16,4 +16,9 @@ class Actividad extends Model
         'nombre',
         'descripcion'
     ];
+
+    public function actividadesPersonas()
+    {
+        return $this->belongsToMany(Persona::class);
+    }
 }

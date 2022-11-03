@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('personas_actividades', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('descripcion');
             $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
             $table->unsignedBigInteger('actividad_id');

@@ -16,4 +16,16 @@ class Persona extends Model
         'curp',
         'localidad_id'
     ];
+
+    public function localidad()
+    {
+        return $this->belongsTo(Localidad::class, 'localidad_id');
+    }
+
+
+    public function personasActividades()
+    {
+        $this->belongsToMany(Actividad::class);
+    }
+
 }
