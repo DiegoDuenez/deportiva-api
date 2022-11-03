@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\LocalidadController;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\MembresiaController;
@@ -31,16 +32,33 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+
+/**
+ * Usuario
+ * 
+ */
+Route::controller(UserController::class)->group(function () {
+    Route::middleware('auth:sanctum')->get('usuarios', 'index');
+    Route::middleware('auth:sanctum')->get('usuarios/{id}', 'show');
+    Route::post('usuarios', 'store');
+    Route::post('login', 'login');
+    Route::middleware('auth:sanctum')->put('usuarios/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('usuarios/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->delete('logout', 'logout');
+});
+
+
+
 /**
  * Localidad
  * 
  */
 Route::controller(LocalidadController::class)->group(function () {
-    Route::get('localidades', 'index');
-    Route::get('localidades/{id}', 'show');
-    Route::post('localidades', 'store');
-    Route::put('localidades/{id}', 'update');
-    Route::delete('localidades/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('localidades', 'index');
+    Route::middleware('auth:sanctum')->get('localidades/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('localidades', 'store');
+    Route::middleware('auth:sanctum')->put('localidades/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('localidades/{id}', 'destroy');
 });
 
 
@@ -50,11 +68,11 @@ Route::controller(LocalidadController::class)->group(function () {
  * 
  */
 Route::controller(PersonaController::class)->group(function () {
-    Route::get('personas', 'index');
-    Route::get('personas/{id}', 'show');
-    Route::post('personas', 'store');
-    Route::put('personas/{id}', 'update');
-    Route::delete('personas/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('personas', 'index');
+    Route::middleware('auth:sanctum')->get('personas/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('personas', 'store');
+    Route::middleware('auth:sanctum')->put('personas/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('personas/{id}', 'destroy');
 });
 
 
@@ -64,11 +82,11 @@ Route::controller(PersonaController::class)->group(function () {
  * 
  */
 Route::controller(MembresiaController::class)->group(function () {
-    Route::get('membresias', 'index');
-    Route::get('membresias/{id}', 'show');
-    Route::post('membresias', 'store');
-    Route::put('membresias/{id}', 'update');
-    Route::delete('membresias/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('membresias', 'index');
+    Route::middleware('auth:sanctum')->get('membresias/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('membresias', 'store');
+    Route::middleware('auth:sanctum')->put('membresias/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('membresias/{id}', 'destroy');
 });
 
 
@@ -78,11 +96,11 @@ Route::controller(MembresiaController::class)->group(function () {
  * 
  */
 Route::controller(EstadoController::class)->group(function () {
-    Route::get('estados', 'index');
-    Route::get('estados/{id}', 'show');
-    Route::post('estados', 'store');
-    Route::put('estados/{id}', 'update');
-    Route::delete('estados/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('estados', 'index');
+    Route::middleware('auth:sanctum')->get('estados/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('estados', 'store');
+    Route::middleware('auth:sanctum')->put('estados/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('estados/{id}', 'destroy');
 });
 
 
@@ -92,11 +110,11 @@ Route::controller(EstadoController::class)->group(function () {
  * 
  */
 Route::controller(MunicipioController::class)->group(function () {
-    Route::get('municipios', 'index');
-    Route::get('municipios/{id}', 'show');
-    Route::post('municipios', 'store');
-    Route::put('municipios/{id}', 'update');
-    Route::delete('municipios/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('municipios', 'index');
+    Route::middleware('auth:sanctum')->get('municipios/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('municipios', 'store');
+    Route::middleware('auth:sanctum')->put('municipios/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('municipios/{id}', 'destroy');
 });
 
 
@@ -106,11 +124,11 @@ Route::controller(MunicipioController::class)->group(function () {
  * 
  */
 Route::controller(FamiliaController::class)->group(function () {
-    Route::get('familias', 'index');
-    Route::get('familias/{id}', 'show');
-    Route::post('familias', 'store');
-    Route::put('familias/{id}', 'update');
-    Route::delete('familias/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('familias', 'index');
+    Route::middleware('auth:sanctum')->get('familias/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('familias', 'store');
+    Route::middleware('auth:sanctum')->put('familias/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('familias/{id}', 'destroy');
 });
 
 
@@ -120,11 +138,11 @@ Route::controller(FamiliaController::class)->group(function () {
  * 
  */
 Route::controller(PagoController::class)->group(function () {
-    Route::get('pagos', 'index');
-    Route::get('pagos/{id}', 'show');
-    Route::post('pagos', 'store');
-    Route::put('pagos/{id}', 'update');
-    Route::delete('pagos/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('pagos', 'index');
+    Route::middleware('auth:sanctum')->get('pagos/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('pagos', 'store');
+    Route::middleware('auth:sanctum')->put('pagos/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('pagos/{id}', 'destroy');
 });
 
 
@@ -134,9 +152,9 @@ Route::controller(PagoController::class)->group(function () {
  * 
  */
 Route::controller(ActividadController::class)->group(function () {
-    Route::get('actividades', 'index');
-    Route::get('actividades/{id}', 'show');
-    Route::post('actividades', 'store');
-    Route::put('actividades/{id}', 'update');
-    Route::delete('actividades/{id}', 'destroy');
+    Route::middleware('auth:sanctum')->get('actividades', 'index');
+    Route::middleware('auth:sanctum')->get('actividades/{id}', 'show');
+    Route::middleware('auth:sanctum')->post('actividades', 'store');
+    Route::middleware('auth:sanctum')->put('actividades/{id}', 'update');
+    Route::middleware('auth:sanctum')->delete('actividades/{id}', 'destroy');
 });
