@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Resources\PagoResource;
+use App\Http\Resources\ActividadResource;
 use Illuminate\Http\Request;
-use App\Models\Pago;
+use App\Models\Actividad;
 
-class PagoController extends Controller
+class ActividadController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +18,7 @@ class PagoController extends Controller
      */
     public function index()
     {
-        return PagoResource::collection(Pago::all());
+        return ActividadResource::collection(Actividad::all());
     }
 
 
@@ -31,7 +31,7 @@ class PagoController extends Controller
      */
     public function show(int $id)
     {
-        return new PagoResource(Pago::find($id));
+        return new ActividadResource(Actividad::find($id));
     }
 
 
@@ -45,12 +45,11 @@ class PagoController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'folio_id' => 'required',
-            'pagado' => 'required',
-            'mensualidad_pagar' => 'required',
+            'nombre' => 'required',
+            'descripcion' => 'required',
         ]);
 
-        return new PagoResource(Pago::create($validated));
+        return new ActividadResource(Actividad::create($validated));
     }
     
 
@@ -65,13 +64,12 @@ class PagoController extends Controller
     public function update(Request $request, int $id)
     {
         $validated = $request->validate([
-            'folio_id' => 'required',
-            'pagado' => 'required',
-            'mensualidad_pagar' => 'required',
+            'nombre' => 'required',
+            'descripcion' => 'required',
         ]);
 
         try {
-            $Pago = Pago::findOrFail($id);
+            $Actividad = Actividad::findOrFail($id);
 
         } catch (ModelNotFoundException $exception) {
 
@@ -82,8 +80,8 @@ class PagoController extends Controller
             
         }
 
-        if($Pago->update($validated))
-            return new PagoResource($Pago);
+        if($Actividad->update($validated))
+            return new ActividadResource($Actividad);
         
     }
 
@@ -100,7 +98,7 @@ class PagoController extends Controller
         
         try {
 
-            $Pago = Pago::findOrFail($id);
+            $Actividad = Actividad::findOrFail($id);
 
         } catch (ModelNotFoundException $exception) {
 
@@ -111,7 +109,7 @@ class PagoController extends Controller
 
         }
 
-        if($Pago->delete())
+        if($Actividad->delete())
             return response()->json([
                 'status' => true,
                 'message' => 'Resource deleted'

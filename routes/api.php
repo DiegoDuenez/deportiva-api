@@ -7,6 +7,9 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\MembresiaController;
 use App\Http\Controllers\EstadoController;
 use App\Http\Controllers\MunicipioController;
+use App\Http\Controllers\FamiliaController;
+use App\Http\Controllers\PagoController;
+use App\Http\Controllers\ActividadController;
 
 
 
@@ -122,4 +125,18 @@ Route::controller(PagoController::class)->group(function () {
     Route::post('pagos', 'store');
     Route::put('pagos/{id}', 'update');
     Route::delete('pagos/{id}', 'destroy');
+});
+
+
+
+/**
+ * Actividad
+ * 
+ */
+Route::controller(ActividadController::class)->group(function () {
+    Route::get('actividades', 'index');
+    Route::get('actividades/{id}', 'show');
+    Route::post('actividades', 'store');
+    Route::put('actividades/{id}', 'update');
+    Route::delete('actividades/{id}', 'destroy');
 });
